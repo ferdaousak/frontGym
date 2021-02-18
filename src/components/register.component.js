@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import Select from "react-validation/build/select";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
 
 import AuthService from "../services/auth.service";
 
@@ -61,8 +59,7 @@ export default class Register extends Component {
             email: "",
             password: "",
             successful: false,
-            message: "",
-            role: ''
+            message: ""
         };
     }
 
@@ -84,16 +81,6 @@ export default class Register extends Component {
         });
     }
 
-    onChangeRole(e)
-    {
-            let {name, value} = e.target;
-            this.setState({
-              role: value,
-            });
-
-            console.log("name : " + name + " value : " + value);
-    }
-
     handleRegister(e) {
         e.preventDefault();
 
@@ -103,13 +90,13 @@ export default class Register extends Component {
         });
 
         this.form.validateAll();
-
+        
         if (this.checkBtn.context._errors.length === 0) {
             AuthService.register(
                 this.state.username,
                 this.state.email,
                 this.state.password,
-                this.state.role
+                
             ).then(
                 response => {
                     this.setState({
@@ -186,13 +173,6 @@ export default class Register extends Component {
                                         onChange={this.onChangePassword}
                                         validations={[required, vpassword]}
                                     />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="role">Are you a trainer ?</label>
-                                    <select name="role" onChange={this.onChangeRole}>
-                                        <option value="trainer">Trainer</option>
-                                        <option value="user">Simple user</option>
-                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <button className="btn btn-primary btn-block">Sign Up</button>
