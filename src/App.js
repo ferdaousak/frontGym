@@ -55,9 +55,6 @@ class App extends Component {
               <Link to={"/home"} className="nav-link link">
                 Home
               </Link>
-              <Link to={"/"} className="nav-link link">
-                Classes
-              </Link>
               {showTrainerBoard && (
                 <li className="nav-item">
                   <Link to={"/mod"} className="nav-link link">

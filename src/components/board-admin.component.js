@@ -47,10 +47,10 @@ export default class BoardAdmin extends Component {
                 </thead>
                 <tbody>
                     {this.state.users.map(({ id, username, email, roles }) => (
-                        <tr>
+                        <tr key={id}>
                             <td></td>
-                            <td key={id}>{username}</td>
-                            <td key={id}>{email}</td>
+                            <td >{username}</td>
+                            <td >{email}</td>
                             <td>{roles.role}</td>
                             <td><Button variant="danger">Delete</Button></td>
 
