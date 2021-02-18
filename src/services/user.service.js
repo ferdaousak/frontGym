@@ -3,9 +3,13 @@ import authHeader from './auth-header';
 import AuthService from "../services/auth.service";
 
 const API_URL = 'http://localhost:8080/api/test/';
-const API_URL2 = 'http://localhost:8080/api/profile';
+const API_URL2 = 'http://localhost:8080/api/services/';
 
 class UserService {
+
+    getAllUsers() {
+        return axios.get(API_URL2 + 'user/all');
+    }
 
     getPublicContent() {
         return axios.get(API_URL + 'all');

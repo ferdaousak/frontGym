@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Table, Button } from 'react-bootstrap';
+
 
 import UserService from "../services/user.service";
 
@@ -7,15 +9,15 @@ export default class BoardAdmin extends Component {
         super(props);
 
         this.state = {
-            content: ""
+            users: []
         };
     }
 
     componentDidMount() {
-        UserService.getAdminBoard().then(
+        UserService.getAllUsers().then(
             response => {
                 this.setState({
-                    content: response.data
+                    users: response.data
                 });
             },
             error => {
@@ -33,11 +35,30 @@ export default class BoardAdmin extends Component {
 
     render() {
         return (
-            <div className="container">
-                <header className="jumbotron">
-                    <h3>{this.state.content}</h3>
-                </header>
-            </div>
+            <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Authority</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.users.map(({ id, username, email, roles }) => (
+                        <tr>
+                            <td></td>
+                            <td key={id}>{username}</td>
+                            <td key={id}>{email}</td>
+                            <td>{roles.role}</td>
+                            <td><Button variant="danger">Delete</Button></td>
+
+                        </tr>
+
+                    ))}
+                </tbody>
+            </Table>
         );
     }
 }
