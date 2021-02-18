@@ -11,6 +11,32 @@ class UserService {
         return axios.get(API_URL2 + 'user/all');
     }
 
+    getUserById(id)
+    {
+        const request = {
+            id:id,
+            username:"0"
+        }
+        return axios.post(API_URL2 + 'user/getuser', request ,{ headers: authHeader()}).then(response => {
+            return response.data;
+        });
+    }
+
+    getUserByname(name)
+    {
+        const request = {}
+    }
+    deleteUser(id)
+    {
+        return axios.delete(API_URL2+'user/delete', {
+            headers: authHeader(),
+            data: {
+              id:id,
+              username:"0"
+            }
+          });
+    }
+
     getPublicContent() {
         return axios.get(API_URL + 'all');
     }

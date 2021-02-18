@@ -45,33 +45,33 @@ class App extends Component {
   render() {
     const { currentUser, showTrainerBoard, showAdminBoard } = this.state;
     return (
+      <>
       <Router>
-        <div>
           <Navbar className="color-nav" variant="light">
-            <Link to={"/"} className="navbar-brand link">
+            <Link to={"/"} className="navbar-brand link" style={{color:"white"}}>
               GYM WITH ME
-          </Link>
+            </Link>
             <Nav className="mr-auto">
-              <Link to={"/home"} className="nav-link link">
+              <Link to={"/home"} className="nav-link link" style={{color:"white"}}>
                 Home
               </Link>
               {showTrainerBoard && (
                 <li className="nav-item">
-                  <Link to={"/mod"} className="nav-link link">
-                    Moderator Board
+                  <Link to={"/trainer"} className="nav-link link" style={{color:"white"}}>
+                    Trainer Board
                 </Link>
                 </li>
               )}
               {showAdminBoard && (
                 <li className="nav-item">
-                  <Link to={"/admin"} className="nav-link link">
+                  <Link to={"/admin"} className="nav-link link" style={{color:"white"}}>
                     Admin Board
                 </Link>
                 </li>
               )}
               {currentUser && (
                 <li className="nav-item">
-                  <Link to={"/user"} className="nav-link link">
+                  <Link to={"/user"} className="nav-link link" style={{color:"white"}}>
                     User
                 </Link>
                 </li>
@@ -82,12 +82,12 @@ class App extends Component {
               {currentUser ? (
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link to={"/profile"} className="nav-link link">
+                    <Link to={"/profile"} className="nav-link link" style={{color:"white"}}>
                       {currentUser.username}
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <a href="/login" className="nav-link link" onClick={this.logOut}>
+                    <a href="/login" className="nav-link link" style={{color:"white"}} onClick={this.logOut}>
                       LogOut
                 </a>
                   </li>
@@ -107,10 +107,8 @@ class App extends Component {
                     </li>
                   </div>
                 )}
-
             </Nav>
           </Navbar>
-
           <div className="container mt-3">
             <Switch>
               <Route exact path={["/", "/home"]} component={Home} />
@@ -122,10 +120,8 @@ class App extends Component {
               <Route path="/admin" component={BoardAdmin} />
             </Switch>
           </div>
-        </div>
-
       </Router>
-
+    </>
     );
   }
 }
