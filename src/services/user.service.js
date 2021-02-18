@@ -20,7 +20,7 @@ class UserService {
     }
 
     getModeratorBoard() {
-        return axios.get(API_URL + 'mod', { headers: authHeader() });
+        return axios.get(API_URL + 'trainer', { headers: authHeader() });
     }
 
     getAdminBoard() {
