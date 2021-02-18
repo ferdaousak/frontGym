@@ -7,6 +7,9 @@ label {
   max-width: 350px !important;
   padding: 40px 40px;
 }
+.color-nav{
+  background-color:rgb(95,174,31);
+}
 
 .card {
   background-color: #f7f7f7;
