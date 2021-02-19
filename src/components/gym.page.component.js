@@ -6,6 +6,8 @@ import 'antd/dist/antd.css';
 import {Card,CardColumns,ListGroup,Tabs,Tab, ListGroupItem} from 'react-bootstrap';
 import AuthService from "../services/auth.service";
 
+import UploadFiles from "./upload-files.component"
+
 const currentUser = AuthService.getCurrentUser();
 
 class GymPage extends React.Component
@@ -73,13 +75,21 @@ class GymPage extends React.Component
                     <Tab eventKey="infos" title="Gym Infos">
                         {this.renderInfosTab()}
                     </Tab>
-                    {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.id) || currentUser.roles.includes("ROLE_ADMIN")) &&
+                    {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.trainerid) || currentUser.roles.includes("ROLE_ADMIN")) &&
                     <Tab eventKey="users" title="Users">
                         {this.renderUsersTab()}
                     </Tab>}
                     <Tab eventKey="videos" title="Videos">
                         {this.renderVideosTab()}
                     </Tab>
+                    {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.trainerid) || currentUser.roles.includes("ROLE_ADMIN")) &&
+                    <Tab eventKey="test upload" title="Upload">
+                        <Card bg="info" text="dark">
+                            <Card.Body>
+                            {this.state.gym && <UploadFiles gymid={this.state.gym.id}/>}
+                            </Card.Body>
+                        </Card>
+                    </Tab>}
                 </Tabs>
                 </Card.Body>
             </Card>
@@ -187,7 +197,7 @@ class GymPage extends React.Component
                             Gym Videos : 
                         </Card.Header>
                         <Card.Body>
-                            {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.id) || currentUser.roles.includes("ROLE_ADMIN")) &&
+                            {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.trainerid) || currentUser.roles.includes("ROLE_ADMIN")) &&
                             <Form ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
                             <Form.Item name="title" label="Video Title"
                                         rules={[{required: true}]}>
@@ -212,7 +222,7 @@ class GymPage extends React.Component
                                 <>
                                 <ListGroup.Item variant="secondary">Title : {title}</ListGroup.Item>
                                 <ListGroup.Item variant="secondary">Url : {url}</ListGroup.Item>
-                                {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.id) || currentUser.roles.includes("ROLE_ADMIN")) &&
+                                {((currentUser.roles.includes("ROLE_TRAINER") && currentUser.id === this.state.gym.trainerid) || currentUser.roles.includes("ROLE_ADMIN")) &&
                                 <Button onClick={() => {this.deleteVideoFromGym(this.state.gym.id,title)}} type="danger">
                                             Delete
                                 </Button>}
