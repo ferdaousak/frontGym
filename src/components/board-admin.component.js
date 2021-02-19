@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Table, Button,Tabs,Tab,Card,Alert } from 'react-bootstrap';
 import UserService from "../services/user.service";
 import GymService from "../services/gyms.service";
+import {Link} from "react-router-dom";
 
 export default class BoardAdmin extends React.Component {
     constructor(props) {
@@ -100,7 +101,15 @@ export default class BoardAdmin extends React.Component {
                             <td>{trainerid}</td>
                             <td>{userids.length}</td>
                             <td>{videoids.length}</td>
-                            <td><Button variant="info">Show details</Button></td>
+                            <td>
+                                <Link className="btn btn-primary" 
+                                            to ={{
+                                                        pathname: "/gym",
+                                                        state: { currentPageId: id }
+                                                }}>
+                                            Show details
+                                </Link>
+                            </td>
                             <td><Button onClick={() => {this.deleteGym(name)}} variant="danger">Delete</Button></td>
                         </tr>
                     ))}

@@ -78,6 +78,17 @@ class TrainerGyms extends React.Component
     onNameChange = ({target : {value}}) => {
         this.setState({value})
     };
+
+    deleteGym(name)
+    {
+        if(window.confirm('Are you sure you want to delete ?'))
+        {  
+            GymService.deleteGym(name);
+            alert('Gym deleted');
+        }
+
+        this.loadData();
+    }
     render(){
 
         const { user } = this.state;
@@ -122,7 +133,7 @@ class TrainerGyms extends React.Component
                 {this.state.gyms && 
                 <CardDeck>
                     {this.state.gyms.map(({id,name,trainerid,userids,videoids})=>(
-                        <Card key={id} bg="dark" border="light" text="light" style={{minWidth:"200px", maxWidth:"300px"}}>
+                        <Card key={id} bg="dark" border="light" text="light" style={{minWidth:"400px", maxWidth:"600px"}}>
                             <Card.Header>Gym : {name}</Card.Header>
                             <Card.Body>
                                 <ListGroup>
@@ -137,6 +148,9 @@ class TrainerGyms extends React.Component
                                                 }}>
                                            Show details 
                                         </Link>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item variant="primary">
+                                        <Link className="btn btn-danger" onClick={() => {this.deleteGym(name)}}>Delete</Link>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>

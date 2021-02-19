@@ -4,6 +4,7 @@ import GymService from "../services/gyms.service";
 
 import {CardDeck,Card,ListGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {Button} from "antd";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
@@ -26,12 +27,20 @@ class MyGyms extends React.Component {
         })
     }
 
+    deleteUserFromGym(gymid,username)
+    {
+        if(window.confirm('Are you sure you want to quit this gym ?'))
+        {  
+            GymService.removeUserfromGym(gymid,username);
+            alert('you quit from the gym succeessfully');
+        }
+    }
     render()
     {
         return (
             <Card bg="secondary" text="light">
                 <Card.Header>
-                    <h1>My Gyms : </h1>
+                    <h1 style={{color:"white"}}>My Gyms</h1>
                 </Card.Header>
 
                 <Card.Body style={{display: "flex", justifyContent: "center"}}>
@@ -54,6 +63,9 @@ class MyGyms extends React.Component {
                                                 >
                                            Show details
                                         </Link>
+                                        <Button onClick={() => {this.deleteUserFromGym(id,currentUser.username)}} type="danger">
+                                            Exit from Gym
+                                        </Button>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>

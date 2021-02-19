@@ -7,7 +7,7 @@ class VideoService{
 
     getAllvids()
     {
-        return axios.get(API_URL + '/');
+        return axios.get(API_URL + '/', { headers: authHeader()});
     }
 
     getVideoById(id)

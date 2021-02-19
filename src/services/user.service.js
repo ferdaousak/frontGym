@@ -8,7 +8,7 @@ const API_URL2 = 'http://localhost:8080/api/services/';
 class UserService {
 
     getAllUsers() {
-        return axios.get(API_URL2 + 'user/all');
+        return axios.get(API_URL2 + 'user/all',{ headers: authHeader()});
     }
 
     getUserById(id)
@@ -17,9 +17,7 @@ class UserService {
             id:id,
             username:"0"
         }
-        return axios.post(API_URL2 + 'user/getuser', request ,{ headers: authHeader()}).then(response => {
-            return response.data;
-        });
+        return axios.post(API_URL2 + 'user/getuser', request ,{ headers: authHeader()});
     }
 
     getUserByname(name)
@@ -38,7 +36,7 @@ class UserService {
     }
 
     getPublicContent() {
-        return axios.get(API_URL + 'all');
+        return axios.get(API_URL + 'all', { headers: authHeader()});
     }
 
     getUserBoard() {

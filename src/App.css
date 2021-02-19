@@ -49,10 +49,6 @@ label {
   border-radius: 50%;
 }
 
-.nav-link.link > a {
-  color: white;
-}
-
 .nav-item {
   color : white;
 }

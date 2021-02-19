@@ -41,7 +41,7 @@ class AllGyms extends Component {
         return(
             <Card bg="secondary" text="light">
                 <Card.Header>
-                    <h1>All Gyms : </h1>
+                    <h1 style={{color:"white"}}>All Gyms : </h1>
                 </Card.Header>
 
                 <Card.Body style={{display: "flex", justifyContent: "center"}}>

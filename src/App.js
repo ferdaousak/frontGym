@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Table } from 'react-bootstrap';
+import logo from "./images/logo.PNG";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Table,Image } from 'react-bootstrap';
 
 import AuthService from "./services/auth.service";
 

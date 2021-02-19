@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
+import logo from "../images/logo.PNG";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
-import {Card,Button}from 'react-bootstrap';
+import {Card,Button,Image}from 'react-bootstrap';
 import { Typography } from 'antd';
 import {Link} from "react-router-dom";
 
@@ -55,6 +55,8 @@ export default class Home extends Component {
                     to ={{pathname: "/allgyms"}}>
                             Start training
                     </Link>
+
+                    <Image src={logo} roundedCircle  fluid style={{marginTop:"-15%",marginLeft:"30%",width:"30%", height:"10%",display:"inline"}}/>
                 </Card.Body>
             </Card>
         );
