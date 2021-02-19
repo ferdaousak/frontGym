@@ -50,17 +50,13 @@ export default class Profile extends Component {
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={currentUser.email} />
+                        <Form.Control disabled type="email" placeholder="Enter email" value={currentUser.email} />
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={currentUser.username} />
+                        <Form.Control disabled type="email" placeholder="Enter email" value={currentUser.username} />
                     </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                        Update
-                    </Button>
                 </Form>
                 {(this.state.role == "ROLE_ADMIN") && 
                 <>

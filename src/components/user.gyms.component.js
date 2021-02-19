@@ -4,18 +4,25 @@ import GymService from "../services/gyms.service";
 
 import {CardDeck,Card,ListGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import userService from "../services/user.service";
+import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
 
+
+const currentUser = AuthService.getCurrentUser();
 class AllGyms extends Component {
     
     state = {
         gyms: [],
-        user : '',
+        trainers : []
     }
 
 
     componentDidMount()
     {
+        if (!currentUser) this.setState({ redirect: "/home" });
+
+
+        console.log("user :" + currentUser)
         GymService.getAllgyms().then(response =>{
             this.setState({
                 gyms: response.data
@@ -23,19 +30,12 @@ class AllGyms extends Component {
         })
     }
 
-    getUserById(id)
-    {
-        console.log("id" + id);
 
-        this.setState({
-            user:''
+    joinThisGym(gymid,username)
+    {
+        GymService.addUserToGym(gymid, username).then(response =>{
+            console.log(response.data)
         })
-        userService.getUserById(id).then(response =>{
-            this.setState({
-                user : response.data
-            })
-        })
-        console.log("user : " + this.state.user)
     }
     render() {
         return(
@@ -51,17 +51,19 @@ class AllGyms extends Component {
                         <Card key={id} bg="dark" border="light" text="light" style={{minWidth:"200px", maxWidth:"300px"}}>
                             <Card.Header>Gym : {name}</Card.Header>
                             <Card.Body>
-                                
                                 <ListGroup>
                                     <ListGroup.Item variant="primary">Trainer id : {trainerid}</ListGroup.Item>
-                                    <ListGroup.Item variant="primary">Trainer name : {(id)=>this.getUserById(id)}</ListGroup.Item>
                                     <ListGroup.Item variant="primary">N° Users : {userids.length}</ListGroup.Item>
                                     <ListGroup.Item variant="primary">N° Videos: {videoids.length}</ListGroup.Item >
                                     <ListGroup.Item variant="primary">
-                                        <Link className="btn btn-primary" to ={{
-                                            pathname: "/gym",
-                                            state: { currentPageId: id }
-                                                }}>
+                                        <Link className="btn btn-primary" 
+                                        to ={   {
+                                                    pathname: "/gym",
+                                                    state: { currentPageId: id }
+                                            }}
+                                        onClick={()=>this.joinThisGym(id,currentUser.username)}
+                                                
+                                                >
                                            Join
                                         </Link>
                                     </ListGroup.Item>

@@ -16,6 +16,7 @@ import BoardAdmin from "./components/board-admin.component";
 import TrainerGyms from "./components/trainer.gyms.component";
 import GymPage from "./components/gym.page.component";
 import AllGyms from "./components/user.gyms.component"
+import MyGyms from "./components/user.my.gyms.components";
 
 class App extends Component {
   constructor(props) {
@@ -75,11 +76,18 @@ class App extends Component {
                 </li>
               )}
               {currentUser && (
+                <>
                 <li className="nav-item">
                   <Link to={"/allgyms"} className="nav-link link" style={{color:"white"}}>
                     Browse Gyms
                 </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to={"/mygyms"} className="nav-link link" style={{color:"white"}}>
+                    My-Gyms
+                </Link>
+                </li>
+                </>
               )}
 
             </Nav>
@@ -124,6 +132,8 @@ class App extends Component {
               <Route path="/admin" component={BoardAdmin} />
               <Route path="/gyms" component={TrainerGyms} />
               <Route path="/gym" component={GymPage} />
+              <Route path="/mygyms" component={MyGyms} />
+
 
             </Switch>
           </div>
