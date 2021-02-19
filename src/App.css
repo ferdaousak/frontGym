@@ -6,6 +6,8 @@ body {
   /* Center and scale the image nicely */
   background-repeat: no-repeat;
   background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 label {
@@ -19,6 +21,10 @@ label {
 }
 .color-nav{
   background-color:#558C8C;
+
+  position: sticky;
+  top :0px;
+  z-index: 90;
 }
 .card {
   background-color: #f7f7f7;

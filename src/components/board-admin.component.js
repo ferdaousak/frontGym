@@ -26,7 +26,6 @@ export default class BoardAdmin extends React.Component {
         <Card bg="secondary" text="light">
             <Card.Header>
                 Admin Dashboard
-
                 <Button onClick={() => {this.onButtonRefrechData()}} style={{marginLeft:"70%"}} variant="info">Refresh Data</Button>
             </Card.Header>
             <Card.Body>

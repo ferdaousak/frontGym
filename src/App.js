@@ -13,6 +13,9 @@ import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/board-admin.component";
+import TrainerGyms from "./components/trainer.gyms.component";
+import GymPage from "./components/gym.page.component";
+import AllGyms from "./components/user.gyms.component"
 
 class App extends Component {
   constructor(props) {
@@ -56,11 +59,13 @@ class App extends Component {
                 Home
               </Link>
               {showTrainerBoard && (
-                <li className="nav-item">
-                  <Link to={"/trainer"} className="nav-link link" style={{color:"white"}}>
-                    Trainer Board
-                </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                  <Link to={"/gyms"} className="nav-link link" style={{color:"white"}}>
+                    Trainer's Gyms
+                  </Link>
+                  </li>
+              </>
               )}
               {showAdminBoard && (
                 <li className="nav-item">
@@ -71,8 +76,8 @@ class App extends Component {
               )}
               {currentUser && (
                 <li className="nav-item">
-                  <Link to={"/user"} className="nav-link link" style={{color:"white"}}>
-                    User
+                  <Link to={"/allgyms"} className="nav-link link" style={{color:"white"}}>
+                    Browse Gyms
                 </Link>
                 </li>
               )}
@@ -115,9 +120,11 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route path="/user" component={BoardUser} />
-              <Route path="/mod" component={BoardModerator} />
+              <Route path="/allgyms" component={AllGyms} />
               <Route path="/admin" component={BoardAdmin} />
+              <Route path="/gyms" component={TrainerGyms} />
+              <Route path="/gym" component={GymPage} />
+
             </Switch>
           </div>
       </Router>

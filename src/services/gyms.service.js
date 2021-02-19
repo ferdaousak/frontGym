@@ -12,7 +12,7 @@ class GymService
 
     getGymbyId(id)
     {
-        return axios.get(API_URL +`/${id}`, { headers: authHeader() });
+        return axios.post(API_URL +'/id', {gymid: id,username:"0" },{ headers: authHeader() });
     }
 
     getGymbyName(name)
@@ -23,7 +23,8 @@ class GymService
     addGym(gymname,trainerid)
     {
         const gym = {name:gymname, trainerid:trainerid};
-        console.log(gym);
+
+        console.log("gym at service: "+ gym);
         return axios.put(API_URL +'/add',gym,{ headers: authHeader() });
     }
 
@@ -52,16 +53,35 @@ class GymService
 
     removeUserfromGym(gymid, username)
     {
-        const request = {gymid: gymid, username:username};
-
-        return axios.delete(API_URL+'/remove/user',request,{ headers: authHeader() });
+        return axios.delete(API_URL+'/remove/user', {
+            headers: authHeader(),
+            data: {
+              gymid: gymid,
+              username:username
+            }
+          });
     }
 
     getAllgymsOfUser(username)
     {
         const request = {gymid:'0', username:username};
 
-        return axios.get(API_URL,'/user/all',request,{ headers: authHeader()});
+        return axios.post(API_URL+'/user/all',request,{ headers: authHeader()});
+    }
+
+    getAllGymUsers(gymid)
+    {
+        const request = {gymid:gymid, username:"0"};
+
+        return axios.post(API_URL+'/users',request,{ headers: authHeader()});
+
+    }
+
+    getAllgymsOfTrainer(username)
+    {
+        const request = {gymid:'0', username:username};
+
+        return axios.post(API_URL+'/trainer/all',request,{ headers: authHeader()});
     }
 }
 
